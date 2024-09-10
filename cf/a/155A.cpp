@@ -46,7 +46,7 @@ int main()
 }
 
 /*
- problem link :https://codeforces.com/problemset/problem/155A/C
+ problem link :https://codeforces.com/problemset/problem/155A/A
 
  Status : unsolved
 

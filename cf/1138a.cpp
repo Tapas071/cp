@@ -2,9 +2,36 @@
 using namespace std;
 void solve()
 {
-    int n, m, k;
-    cin >> n >> m >> k;
-    cout << min(n, k) * min(m, k) << endl;
+    // int n, m, k;
+    // cin >> n >> m >> k;
+    // cout << min(n, k) * min(m, k) << endl;
+
+    vector<int>arr = {1,2, 4, 8, 10, 12 , 15};
+
+    int n = arr.size();
+    int target = 10;
+
+    int lp = 0, rp = n-1;
+    while( lp<=rp){
+        int mid= (lp+rp)/2;
+
+        if( arr[mid]==target){
+            cout<<" target has been found";
+            // return ;
+            break;
+        }
+        else if( arr[mid]> target){
+            rp =mid-1;
+        }
+        else {
+            lp = mid+1;
+        }
+           
+    }
+
+
+    
+    
 
     return;
 }
