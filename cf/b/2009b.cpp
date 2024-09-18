@@ -1,24 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 void solve()
 {
-    int n;
-    cin>>n;
-    vector<int> ans;
-    for(int i =0; i< n;i++){
-        string s;
-        cin>>s;
-        for(int j =0; j< s.size(); j++){
-            if(s[j]=='#')ans.push_back(j+1);
+    int  a,b;
+    cin>>a>>b;
+    cout<<6-a-b<<endl;
 
-        }
-    }
-    reverse(ans.begin(), ans.end());
 
-    for( auto x : ans)cout<<x<<" ";
-    cout<<endl;
-    
+    return;
 }
 
 int main()
@@ -28,7 +17,7 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();
@@ -40,5 +29,6 @@ int main()
  problem link :https://codeforces.com/problemset/problem/2009/B
 
  Status : unsolved
+
 
 */
