@@ -2,10 +2,17 @@
 using namespace std;
 void solve()
 {
-    int n;
-    cin>>n;
-   
-
+    int l, r, val;
+    cin >> l >> r;
+    val = l;
+    int inc = 1, ans = 0;
+    while (val <= r)
+    {
+        ans++;
+        val += inc;
+        inc++;
+    }
+    cout << ans << endl;
     return;
 }
 
@@ -25,10 +32,9 @@ int main()
 }
 
 /*
- problem link :https://codeforces.com/problemset/problem/2002/A
+ problem link :https://codeforces.com/problemset/problem/2008/A
 
- Status : unsolved
+ Status : solved
 
 
 */
-
