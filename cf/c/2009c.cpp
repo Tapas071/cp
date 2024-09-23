@@ -34,7 +34,7 @@ int main()
 }
 
 /*
- problem link :https://codeforces.com/problemset/problem/2007/C
+ problem link :https://codeforces.com/problemset/problem/2009/C
 
  Status : unsolved
 
