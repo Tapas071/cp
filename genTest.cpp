@@ -1,42 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Tree {
+    int data;
+    Tree* left;
+    Tree* right;
+    //constructor
+    Tree(int data): data(data), left(nullptr), right(nullptr){}
+};
+
 int main()
 {
-    // // Test case 1
-    // string s1 = "cczazcc";
-    // int repeatLimit1 = 3;
-    // Solution sol1;
-    // string result1 = sol1.repeatLimitedString(s1, repeatLimit1);
-    // cout << "Result 1: " << result1 << endl;
+    Tree* t = new Tree(10);
 
-    // // Test case 2
-    // string s2 = "cccccbbbbaaa";
-    // int repeatLimit2 = 2;
-    // Solution sol2;
-    // string result2 = sol2.repeatLimitedString(s2, repeatLimit2);
-    // cout << "Result 2: " << result2 << endl;
-
-    // // Test case 3
-    // string s3 = "zzzzzzzz";
-    // int repeatLimit3 = 3;
-    // Solution sol3;
-    // string result3 = sol3.repeatLimitedString(s3, repeatLimit3);
-    // cout << "Result 3: " << result3 << endl;
-
-    // // Test case 4
-    // string s4 = "abcabcabc";
-    // int repeatLimit4 = 1;
-    // Solution sol4;
-    // string result4 = sol4.repeatLimitedString(s4, repeatLimit4);
-    // cout << "Result 4: " << result4 << endl;
-
-    // // Test case 5
-    // string s5 = "aabbcc";
-    // int repeatLimit5 = 2;
-    // Solution sol5;
-    // string result5 = sol5.repeatLimitedString(s5, repeatLimit5);
-    // cout << "Result 5: " << result5 << endl;
+    // cout<<t.data<<endl;
+   
 
     return 0;
 }
