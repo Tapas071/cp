@@ -9,23 +9,77 @@ struct Tree {
     Tree(int data): data(data), left(nullptr), right(nullptr){}
 };
 
+
 int main()
 {
     Tree* t = new Tree(10);
 
-    // cout<<t.data<<endl;
    
 
     return 0;
 }
 
-/*
-There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array classes, where classes[i] = [passi, totali]. You know beforehand that in the ith class, there are totali total students, but only passi number of students will pass the exam.
+typedef pair<int, int> pii;
+void dijikstra(int start, vector<vector<pii>> &graph){
+    int n = graph.size();
+    vector<int>dist(n,INT_MAX);
+    priority_queue<pii, vector<pii> ,greater<pii>>pq;
+    dist[start]=0;
+    pq.push({0,start}); // pushing dist and node
 
-You are also given an integer extraStudents. There are another extraStudents brilliant students that are guaranteed to pass the exam of any class they are assigned to. You want to assign each of the extraStudents students to a class in a way that maximizes the average pass ratio across all the classes.
+    // you don't need to make visited array as it is a dag 
+    while(!pq.empty()){
+        pii top = pq.top();
+        int d = top.first;
+        int u = top.second;
+        pq.pop();
+        if(d > dist[u])continue;
+        for( auto & neighbour: graph[u]){
+            int v = neighbour.first;
+            int weight = neighbour.second;
+            if(dist[u] + weight < dist[v]){
+                dist[v] = dist[u] + weight;
+                pq.push({dist[v],v});
+            }
 
-The pass ratio of a class is equal to the number of students of the class that will pass the exam divided by the total number of students of the class. The average pass ratio is the sum of pass ratios of all the classes divided by the number of the classes.
+        }
+        
+    }
+}
 
-Return the maximum possible average pass ratio after assigning the extraStudents students. Answers within 10-5 of the actual answer will be accepted.
+void bfs(int n, vector<vector<int>> &graph)
+{
+    queue<int> q;
+    q.push(n);
+    vector<bool> visited(graph.size(), false);
+    visited[n] = true;
+    while (!q.empty())
+    {
+        int sx = q.size();
+        for (int i = 0; i < sx; i++)
+        {
+            int node = q.front();
+            q.pop();
+            for (int nn : graph[node])
+            {
+                if (!visited[nn])
+                {
+                    q.push(nn);
+                    visited[nn] = true;
+                }
+            }
+        }
+    }
+}
 
-*/
+void dfs(int n, vector<bool> &visited, vector<vector<int>> &graph)
+{
+    visited[n] = true;
+    // do all the operation
+    //
+    for (auto node : graph[n])
+    {
+        if (!visited[node])
+            dfs(node, visited, graph);
+    }
+}
