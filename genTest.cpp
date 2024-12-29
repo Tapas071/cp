@@ -8,43 +8,69 @@ struct Tree {
     //constructor
     Tree(int data): data(data), left(nullptr), right(nullptr){}
 };
+// class Solution
+// {
+//     public:
+//     int ans;
+//     int helper(int row, int col, vector<vector<int>> &grid, int k, int xorVal){
+//         int n = grid.size(), m = grid[0].size();
+//         xorVal^= grid[row][col];
+//         if(row == n-1 and col == m-1){
+//             ans += 1;
+//             return;
+//         }
+//         int pos1=0, pos2 =0;
+//         if(row +1 <n-1){
+//             pos1 = helper(row+1, col, grid, k, xorVal);
+            
+//         }
+//         if(col +1 <m-1){
+//             pos2 = helper(row, col+1, grid, k, xorVal);
+//         }
+//         return ;
+
+//     } 
+    
+//     int countPathsWithXorValue(vector<vector<int>> &grid, int k)
+//     {
+//         helper(0,0, grid, k, 0);
+//         return ans;
+//     }
+// };
+
 class Solution
 {
-    public:
-    int ans;
-    int helper(int row, int col, vector<vector<int>> &grid, int k, int xorVal){
-        int n = grid.size(), m = grid[0].size();
-        xorVal^= grid[row][col];
-        if(row == n-1 and col == m-1){
-            ans += 1;
-            return;
-        }
-        int pos1=0, pos2 =0;
-        if(row +1 <n-1){
-            pos1 = helper(row+1, col, grid, k, xorVal);
-            
-        }
-        if(col +1 <m-1){
-            pos2 = helper(row, col+1, grid, k, xorVal);
-        }
-        return ;
+public:
+void recursion ( int i, string s){
 
-    } 
-    
-    int countPathsWithXorValue(vector<vector<int>> &grid, int k)
+
+
+    return;
+}
+    string answerString(string word, int numFriends)
     {
-        helper(0,0, grid, k, 0);
+        int n = word.size();
+        string ans ="";
+        int maxLen = word.size()- ( numFriends -1);
+        for( int i =0; i<n - maxLen +1 ;i++){
+            string s = word.substr(i,maxLen);
+            // cout<<s<<endl;
+            ans = max( s, ans);
+        }
         return ans;
+        
+        return " ";
     }
 };
 
-
-    int
-    main()
+// I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think 
+int main()
 {
-    Tree* t = new Tree(10);
+    // Tree* t = new Tree(10);
+    Solution sol;
+    cout<<sol.answerString("gggg",4)<<endl;
 
-   
+//    cout<<max("abs","abc")<<endl;
 
     return 0;
 }
