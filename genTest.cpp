@@ -69,33 +69,130 @@ bool startsWith(string word)
 
 
 // I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think
+class TaskManager
+{
+public:
+        unordered_map<int, int> taskToUser;
+        unordered_map<int,int> taskToPriority;
+        unordered_map<int,set<int>> priorityToTask;
+        priority_queue<int> pq;
+    TaskManager(vector<vector<int>> &tasks)
+    {
+        for( int i =0; i<tasks.size();i++){
+            add(tasks[i][0], tasks[i][1], tasks[i][2]);
+        }
 
-int main()
+    }
+
+    void add(int userId, int taskId, int priority)
+    {
+        taskToUser[taskId] = userId;
+        taskToPriority[taskId] = priority;
+        priorityToTask[priority].insert(taskId);
+        pq.push(priority);
+    }
+
+    void edit(int taskId, int newPriority)
+    {
+        int oldPriority = taskToPriority[taskId];
+        priorityToTask[oldPriority].erase(taskId);
+        priorityToTask[newPriority].insert(taskId);
+        taskToPriority[taskId]= newPriority;
+        pq.push(newPriority);
+    }
+
+    void rmv(int taskId)
+    {
+        int oldPriority = taskToPriority[taskId];
+        priorityToTask[oldPriority].erase(taskId);
+    }
+
+    int execTop()
+    {
+        int topPriority = pq.top();
+        while (priorityToTask[topPriority].size()==0){
+            pq.pop();
+            topPriority= pq.top();
+        }
+        int topPrioTask = *priorityToTask[topPriority].begin();
+        rmv(topPrioTask);
+        return taskToUser[topPrioTask];
+        }
+};
+
+
+    // leetcode solution
+    class Solution
+{
+public:
+    bool hasMatch(string s, string p)
+    {
+        string f = "", l = "";
+        bool fl = false;
+        for (int i = 0; i < p.size(); i++)
+        {
+            if (p[i] == '*')
+                fl = true;
+            else
+            {
+                if (fl)
+                {
+                    l += p[i];
+                }
+                else
+                    f += p[i];
+            }
+        }
+        int fInd = -1, lInd = -1;
+        for (int i = 0; i < s.size(); i++)
+        {
+            string str = s.substr(i, f.size());
+            if (str == f)
+            {
+                fInd = i;
+                break;
+            }
+        }
+        // cout<<" value of I "<<l<<endl;
+        for (int i = 0; i < s.size(); i++)
+        {
+            string str = s.substr(i, l.size());
+            if (str == l)
+                lInd = i;
+            
+        }
+        // cout<<" first value"<< f<<endl;
+        // cout<<"last value"<<l<<endl;
+        
+        if (f == "" and l == "")
+            return true;
+        if (f == "" and lInd != -1)
+            return true;
+        if (l == "" and fInd != -1)
+            return true;
+        cout<<fInd<< " Find valaue"<<endl;
+        cout<<lInd<<" last index value"<<endl;
+        if (fInd == -1 or lInd == -1)
+            return false;
+        fInd += (f.size() - 1);
+        return lInd > fInd;
+    }
+};
+
+
+int
+    main()
 {
     //  to take input from the input.txt file and to show the output in the output.txt file
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+// #ifndef ONLINE_JUDGE
+//     freopen("input.txt", "r", stdin);
+//     freopen("output.txt", "w", stdout);
+// #endif
 
-    Trie trie;
-
-    // Insert words into the Trie
-    trie.insert("apple");
-    trie.insert("app");
-    trie.insert("bat");
-
-    // Test search function
-    cout << (trie.search("apple") ? "Found 'apple'\n" : "Not Found 'apple'\n");
-    cout << (trie.search("app") ? "Found 'app'\n" : "Not Found 'app'\n");
-    cout << (trie.search("bat") ? "Found 'bat'\n" : "Not Found 'bat'\n");
-    cout << (trie.search("cat") ? "Found 'cat'\n" : "Not Found 'cat'\n");
-
-    // Test prefix function
-    cout << (trie.startsWith("ap") ? "Prefix 'ap' Found\n" : "Prefix 'ap' Not Found\n");
-    cout << (trie.startsWith("ba") ? "Prefix 'ba' Found\n" : "Prefix 'ba' Not Found\n");
-    cout << (trie.startsWith("ca") ? "Prefix 'ca' Found\n" : "Prefix 'ca' Not Found\n");
-
+Solution sol;
+string s1 = "bbbhb", s2 = "hh*bb";
+cout<<sol.hasMatch(s1,s2)<<endl;
+   
     return 0;
 }
 
