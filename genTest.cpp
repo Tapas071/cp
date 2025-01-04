@@ -8,69 +8,93 @@ struct Tree {
     //constructor
     Tree(int data): data(data), left(nullptr), right(nullptr){}
 };
-// class Solution
-// {
-//     public:
-//     int ans;
-//     int helper(int row, int col, vector<vector<int>> &grid, int k, int xorVal){
-//         int n = grid.size(), m = grid[0].size();
-//         xorVal^= grid[row][col];
-//         if(row == n-1 and col == m-1){
-//             ans += 1;
-//             return;
-//         }
-//         int pos1=0, pos2 =0;
-//         if(row +1 <n-1){
-//             pos1 = helper(row+1, col, grid, k, xorVal);
-            
-//         }
-//         if(col +1 <m-1){
-//             pos2 = helper(row, col+1, grid, k, xorVal);
-//         }
-//         return ;
 
-//     } 
-    
-//     int countPathsWithXorValue(vector<vector<int>> &grid, int k)
-//     {
-//         helper(0,0, grid, k, 0);
-//         return ans;
-//     }
-// };
+class TrieNode {
+    public:
+    unordered_map<char,TrieNode*> children;
+    bool isEndOfWord;
 
-class Solution
-{
-public:
-void recursion ( int i, string s){
-
-
-
-    return;
-}
-    string answerString(string word, int numFriends)
-    {
-        int n = word.size();
-        string ans ="";
-        int maxLen = word.size()- ( numFriends -1);
-        for( int i =0; i<n - maxLen +1 ;i++){
-            string s = word.substr(i,maxLen);
-            // cout<<s<<endl;
-            ans = max( s, ans);
-        }
-        return ans;
-        
-        return " ";
+    TrieNode(){
+        isEndOfWord = false;
     }
 };
+class Trie {
+    private:
+        TrieNode * root;
+    public:
+            Trie(){
+                root = new TrieNode();
+            }
+// insert
+void insert(string word){
+    TrieNode* current = root;
+    for(char c : word){
+        if (current->children.find(c) == current->children.end())
+        {
+            current->children[c] = new TrieNode();
+        }
+        current = current->children[c];
+    }
+    current->isEndOfWord= true;
+}
+bool search ( string word){
+    TrieNode* current = root;
+    for( char ch : word){
+        if(current->children.find(ch) != current->children.end()){
+            current= current->children[ch];
+        }
+        else return false;
+    }
+    return (current->isEndOfWord);
+}
+bool startsWith(string word)
+{
+    TrieNode *current = root;
+    for (char ch : word)
+    {
+        if (current->children.find(ch) == current->children.end())
+            return false;
+        current = current->children[ch];
+    }
+    return true;
+}
+};
 
-// I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think 
+
+// searching of the word
+
+// prefix search of the word
+
+
+
+
+// I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think
+
 int main()
 {
-    // Tree* t = new Tree(10);
-    Solution sol;
-    cout<<sol.answerString("gggg",4)<<endl;
+    //  to take input from the input.txt file and to show the output in the output.txt file
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
 
-//    cout<<max("abs","abc")<<endl;
+    Trie trie;
+
+    // Insert words into the Trie
+    trie.insert("apple");
+    trie.insert("app");
+    trie.insert("bat");
+
+    // Test search function
+    cout << (trie.search("apple") ? "Found 'apple'\n" : "Not Found 'apple'\n");
+    cout << (trie.search("app") ? "Found 'app'\n" : "Not Found 'app'\n");
+    cout << (trie.search("bat") ? "Found 'bat'\n" : "Not Found 'bat'\n");
+    cout << (trie.search("cat") ? "Found 'cat'\n" : "Not Found 'cat'\n");
+
+    // Test prefix function
+    cout << (trie.startsWith("ap") ? "Prefix 'ap' Found\n" : "Prefix 'ap' Not Found\n");
+    cout << (trie.startsWith("ba") ? "Prefix 'ba' Found\n" : "Prefix 'ba' Not Found\n");
+    cout << (trie.startsWith("ca") ? "Prefix 'ca' Found\n" : "Prefix 'ca' Not Found\n");
 
     return 0;
 }
@@ -102,6 +126,22 @@ void dijikstra(int start, vector<vector<pii>> &graph){
         
     }
 }
+
+bool detectCycleInDirectedGraph(vector<vector<int>> &graph, int n, int i, vector<bool> &vis, vector<bool> &recStack)
+{
+    vis[i]=true;
+    recStack[i] = true;
+    for( int v : graph[i]){
+        if (!vis[v] && detectCycleInDirectedGraph(graph, n, v , vis, recStack))return true;
+        else {
+            if(recStack[v])return true;
+        }
+    }
+    recStack[i] = false;
+    return false;
+   
+}
+
 
 void bfs(int n, vector<vector<int>> &graph)
 {
