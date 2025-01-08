@@ -69,134 +69,38 @@ bool startsWith(string word)
 
 
 // I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think
-class TaskManager
-{
-public:
-        unordered_map<int, int> taskToUser;
-        unordered_map<int,int> taskToPriority;
-        unordered_map<int,set<int>> priorityToTask;
-        priority_queue<int> pq;
-    TaskManager(vector<vector<int>> &tasks)
-    {
-        for( int i =0; i<tasks.size();i++){
-            add(tasks[i][0], tasks[i][1], tasks[i][2]);
-        }
-
-    }
-
-    void add(int userId, int taskId, int priority)
-    {
-        taskToUser[taskId] = userId;
-        taskToPriority[taskId] = priority;
-        priorityToTask[priority].insert(taskId);
-        pq.push(priority);
-    }
-
-    void edit(int taskId, int newPriority)
-    {
-        int oldPriority = taskToPriority[taskId];
-        priorityToTask[oldPriority].erase(taskId);
-        priorityToTask[newPriority].insert(taskId);
-        taskToPriority[taskId]= newPriority;
-        pq.push(newPriority);
-    }
-
-    void rmv(int taskId)
-    {
-        int oldPriority = taskToPriority[taskId];
-        priorityToTask[oldPriority].erase(taskId);
-    }
-
-    int execTop()
-    {
-        int topPriority = pq.top();
-        while (priorityToTask[topPriority].size()==0){
-            pq.pop();
-            topPriority= pq.top();
-        }
-        int topPrioTask = *priorityToTask[topPriority].begin();
-        rmv(topPrioTask);
-        return taskToUser[topPrioTask];
-        }
-};
 
 
-    // leetcode solution
-    class Solution
-{
-public:
-    bool hasMatch(string s, string p)
-    {
-        string f = "", l = "";
-        bool fl = false;
-        for (int i = 0; i < p.size(); i++)
-        {
-            if (p[i] == '*')
-                fl = true;
-            else
-            {
-                if (fl)
-                {
-                    l += p[i];
-                }
-                else
-                    f += p[i];
-            }
-        }
-        int fInd = -1, lInd = -1;
-        for (int i = 0; i < s.size(); i++)
-        {
-            string str = s.substr(i, f.size());
-            if (str == f)
-            {
-                fInd = i;
-                break;
-            }
-        }
-        // cout<<" value of I "<<l<<endl;
-        for (int i = 0; i < s.size(); i++)
-        {
-            string str = s.substr(i, l.size());
-            if (str == l)
-                lInd = i;
-            
-        }
-        // cout<<" first value"<< f<<endl;
-        // cout<<"last value"<<l<<endl;
-        
-        if (f == "" and l == "")
-            return true;
-        if (f == "" and lInd != -1)
-            return true;
-        if (l == "" and fInd != -1)
-            return true;
-        cout<<fInd<< " Find valaue"<<endl;
-        cout<<lInd<<" last index value"<<endl;
-        if (fInd == -1 or lInd == -1)
-            return false;
-        fInd += (f.size() - 1);
-        return lInd > fInd;
-    }
-};
 
-
-int
-    main()
+int main()
 {
     //  to take input from the input.txt file and to show the output in the output.txt file
-// #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdout);
-// #endif
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+int t ;
+cin>>t;
+while(t--){
+    int v, w;
+    cin>>v>>w;
 
-Solution sol;
-string s1 = "bbbhb", s2 = "hh*bb";
-cout<<sol.hasMatch(s1,s2)<<endl;
-   
+    if(w%2){
+        cout<<-1<<endl;
+    }
+    else {
+        int x = (4*v -w)/2;
+        cout<<x<<" "<<v-x<<endl;
+        //  (v - x ) * 4  + 2*x = w
+    }
+
+}
+
     return 0;
 }
 
 typedef pair<int, int> pii;
+
 void dijikstra(int start, vector<vector<pii>> &graph){
     int n = graph.size();
     vector<int>dist(n,INT_MAX);
@@ -276,3 +180,112 @@ void dfs(int n, vector<bool> &visited, vector<vector<int>> &graph)
             dfs(node, visited, graph);
     }
 }
+
+// leetcode solution
+class Solution
+{
+public:
+    bool hasMatch(string s, string p)
+    {
+        string f = "", l = "";
+        bool fl = false;
+        for (int i = 0; i < p.size(); i++)
+        {
+            if (p[i] == '*')
+                fl = true;
+            else
+            {
+                if (fl)
+                {
+                    l += p[i];
+                }
+                else
+                    f += p[i];
+            }
+        }
+        int fInd = -1, lInd = -1;
+        for (int i = 0; i < s.size(); i++)
+        {
+            string str = s.substr(i, f.size());
+            if (str == f)
+            {
+                fInd = i;
+                break;
+            }
+        }
+        // cout<<" value of I "<<l<<endl;
+        for (int i = 0; i < s.size(); i++)
+        {
+            string str = s.substr(i, l.size());
+            if (str == l)
+                lInd = i;
+        }
+        // cout<<" first value"<< f<<endl;
+        // cout<<"last value"<<l<<endl;
+
+        if (f == "" and l == "")
+            return true;
+        if (f == "" and lInd != -1)
+            return true;
+        if (l == "" and fInd != -1)
+            return true;
+        cout << fInd << " Find valaue" << endl;
+        cout << lInd << " last index value" << endl;
+        if (fInd == -1 or lInd == -1)
+            return false;
+        fInd += (f.size() - 1);
+        return lInd > fInd;
+    }
+};
+
+class TaskManager
+{
+public:
+    unordered_map<int, int> taskToUser;
+    unordered_map<int, int> taskToPriority;
+    unordered_map<int, set<int>> priorityToTask;
+    priority_queue<int> pq;
+    TaskManager(vector<vector<int>> &tasks)
+    {
+        for (int i = 0; i < tasks.size(); i++)
+        {
+            add(tasks[i][0], tasks[i][1], tasks[i][2]);
+        }
+    }
+
+    void add(int userId, int taskId, int priority)
+    {
+        taskToUser[taskId] = userId;
+        taskToPriority[taskId] = priority;
+        priorityToTask[priority].insert(taskId);
+        pq.push(priority);
+    }
+
+    void edit(int taskId, int newPriority)
+    {
+        int oldPriority = taskToPriority[taskId];
+        priorityToTask[oldPriority].erase(taskId);
+        priorityToTask[newPriority].insert(taskId);
+        taskToPriority[taskId] = newPriority;
+        pq.push(newPriority);
+    }
+
+    void rmv(int taskId)
+    {
+        int oldPriority = taskToPriority[taskId];
+        priorityToTask[oldPriority].erase(taskId);
+    }
+
+    int execTop()
+    {
+        int topPriority = pq.top();
+        while (priorityToTask[topPriority].size() == 0)
+        {
+            pq.pop();
+            topPriority = pq.top();
+        }
+        int topPrioTask = *priorityToTask[topPriority].begin();
+        rmv(topPrioTask);
+        return taskToUser[topPrioTask];
+    }
+};
