@@ -66,36 +66,79 @@ bool startsWith(string word)
 // prefix search of the word
 
 
+// leetcode solution
+class Solution1
+{
+public:
+    vector<int> zigzagTraversal(vector<vector<int>> &grid)
+    {
+        int n= grid.size(), m = grid[0].size();
+        int j =0;
+        vector<int> ans;
+
+        for( int i =0; i< n; i++){
+            if( i%2){
+                for( int j =1; j< m; j+=2){
+                    ans.push_back(grid[i][j]);
+                }
+                
+
+            }
+            else {
+                reverse(grid[i].begin(), grid[i].end());
+                for( int j =0; j<m; j +=2 ){
+                    ans.push_back(grid[i][j]);
 
 
-// I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think
+                }
+            }
+
+        }
+        return ans;
+
+    }
+};
+
+class Solution
+{
+public:
+    int maximumAmount(vector<vector<int>> &coins)
+    {
+        int n = coins.size(), m = coins[0].size();
+        vector<vector<vector<int>>>dp(n,vector<vector<int>>(m, vector<int>(3,INT_MIN)));
+        dp[0][0][0]= coins[0][0];
+        if(coins[0][0]<0)dp[0][0][1] =0;
+        for(int i=0;i< n; i++){
+            for( int j =0; j< m; j++){
+                for( int k =0; k<3; k++){
+                    
+
+
+                }
+            }
+        }
 
 
 
-int main()
+    }
+};
+
+    // I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think
+
+    int
+    main()
 {
     //  to take input from the input.txt file and to show the output in the output.txt file
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
-int t ;
-cin>>t;
-while(t--){
-    int v, w;
-    cin>>v>>w;
-
-    if(w%2){
-        cout<<-1<<endl;
-    }
-    else {
-        int x = (4*v -w)/2;
-        cout<<x<<" "<<v-x<<endl;
-        //  (v - x ) * 4  + 2*x = w
-    }
-
-}
-
+// int t ;
+// cin>>t;
+// while(t--){
+//     int n,m;
+//     cin>>n>>m;
+// }
     return 0;
 }
 
@@ -182,61 +225,6 @@ void dfs(int n, vector<bool> &visited, vector<vector<int>> &graph)
 }
 
 // leetcode solution
-class Solution
-{
-public:
-    bool hasMatch(string s, string p)
-    {
-        string f = "", l = "";
-        bool fl = false;
-        for (int i = 0; i < p.size(); i++)
-        {
-            if (p[i] == '*')
-                fl = true;
-            else
-            {
-                if (fl)
-                {
-                    l += p[i];
-                }
-                else
-                    f += p[i];
-            }
-        }
-        int fInd = -1, lInd = -1;
-        for (int i = 0; i < s.size(); i++)
-        {
-            string str = s.substr(i, f.size());
-            if (str == f)
-            {
-                fInd = i;
-                break;
-            }
-        }
-        // cout<<" value of I "<<l<<endl;
-        for (int i = 0; i < s.size(); i++)
-        {
-            string str = s.substr(i, l.size());
-            if (str == l)
-                lInd = i;
-        }
-        // cout<<" first value"<< f<<endl;
-        // cout<<"last value"<<l<<endl;
-
-        if (f == "" and l == "")
-            return true;
-        if (f == "" and lInd != -1)
-            return true;
-        if (l == "" and fInd != -1)
-            return true;
-        cout << fInd << " Find valaue" << endl;
-        cout << lInd << " last index value" << endl;
-        if (fInd == -1 or lInd == -1)
-            return false;
-        fInd += (f.size() - 1);
-        return lInd > fInd;
-    }
-};
 
 class TaskManager
 {
