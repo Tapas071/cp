@@ -64,10 +64,145 @@ bool startsWith(string word)
 // searching of the word
 
 // prefix search of the word
+class Solution4
+{
+public:
+    long long minCost(vector<int> &arr, vector<int> &brr, long long k)
+    {
+        long long  ans=0 , n = arr.size() , ans2=0;
+        vector<int> aSort,bSort , aRank, bRank;
+        aSort= arr;
+        bSort= brr;
+        sort(aSort.begin(), aSort.end());
+        sort(bSort.begin(), bSort.end());
+        unordered_map<int,int> ma,mb;
+        for( int i =0; i< n; i++){
+            ma[aSort[i]]=i;
+            mb[bSort[i]]=i;
+        }
+        for( int i =0; i< n; i++){
+            aRank.push_back(ma[arr[i]]);
+            bRank.push_back(mb[brr[i]]);
+        }
+        for( int  i=0; i< n;i++){
+            ans  += abs(aSort[i]-bSort[i]);
+        }
+        for (int i = 0; i < n; i++)
+        {
+            ans2 += abs(arr[i] - brr[i]);
+        }
+
+        if( aRank !=bRank){
+            ans +=k;
+        }
+        return max(ans, ans2);
+    }
+};
 
 
-// leetcode solution
-class Solution1
+    class Solution3
+{
+public:
+    int maxAdjacentDistance(vector<int> &nums)
+    {
+     vector<int> ans;
+
+     for(auto x : nums)ans.push_back(x);
+     for(auto x : nums)ans.push_back(x);
+     int n =  ans.size();
+     int res =0;
+     for( int i =0; i<n-1; i++){
+        res = max( res, abs(nums[i]-nums[i+1]));
+     }
+     return res;
+    }
+};
+    // leetcode solution
+class Solution
+{
+public:
+    int mod = 1e9 + 7;
+    long long factorial(long long n)
+    {
+        long long result = 1;
+        for (long long i = 1; i <= n; ++i)
+        {
+            result = (result * i) % mod;
+        }
+        return result;
+    }
+    long long modularInverse(long long a)
+    {
+        long long result = 1, power = mod - 2;
+        while (power > 0)
+        {
+            if (power % 2 == 1)
+            {
+                result = (result * a) % mod;
+            }
+            a = (a * a) % mod;
+            power /= 2;
+        }
+        return result;
+    }
+
+    long long nCr(long long n, long long r)
+    {
+        if (r > n)
+            return 0;
+        if (r == 0 || r == n)
+            return 1;
+        long long num = factorial(n);
+        long long den = (factorial(r) * factorial(n - r)) % mod;
+        return (num * modularInverse(den)) % mod;
+    }
+    int minMaxSums(vector<int> &nums, int k)
+    {
+        long long n = nums.size(), ans = 0;
+        for (int i = 0; i < n; i++)
+        {
+             long long val= nums[n-i-1] * pow(2,n-i-1) ;
+            ans = (ans + val) %mod;
+            long long val = nums[i] * pow(2, n-i-1);
+            ans = (ans + val) % mod;
+            // for (int j = 0; j < k; j++)
+            // {
+            //     ans += (nums[n - i - 1] * (nCr(n - i - 1, j))) % mod;
+            //     ans += (nums[i] * (nCr(n - i - 1, j))) % mod;
+            // }
+            cout << ans << " ";
+        }
+        return ans;
+    }
+};
+
+
+    class Solution5
+{
+public:
+    int subarraySum(vector<int> &nums)
+    {
+        int ans =0;
+        int n = nums.size();
+        for( int i =0; i< n; i++){
+            for( int j =i; j< n; j++){
+                if(i == max(0,j-nums[j])){
+                    for( int k=i;k<=j;k++){
+                        ans +=nums[k];
+                    }
+                }
+
+            }
+
+
+        }
+        return ans;
+
+    }
+};
+
+
+    class Solution1
 {
 public:
     vector<int> zigzagTraversal(vector<vector<int>> &grid)
@@ -99,7 +234,7 @@ public:
     }
 };
 
-class Solution
+class Solution2
 {
 public:
     int maximumAmount(vector<vector<int>> &coins)
