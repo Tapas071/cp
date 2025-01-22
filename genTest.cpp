@@ -258,6 +258,10 @@ public:
     }
 };
 
+
+
+
+
     // I can't understand how to solve the problem. there maybe a recurstion solution. But don't give up . Don't think
 
     int
@@ -412,3 +416,70 @@ public:
         return taskToUser[topPrioTask];
     }
 };
+
+
+
+class PoluMorphExamp{
+    int a;
+
+
+    int sum (int a, int b){
+        return a +b;
+    }
+    int sum ( int a, int b, int c){
+
+        return a + b+c;
+    }
+    int sum ( int a , float b){
+
+        return 0;
+    }
+
+    int complexNum + ()( int a , int b){
+
+
+
+    }
+
+    // parent 
+
+    int main(){
+        int a =10;
+        int b  = 20;
+   cout<< sum ( a, b,b)<<endl;
+
+    }
+
+
+
+
+};
+
+
+class Animal {
+
+    void sound (){
+        cout<<"making some sound ";
+        
+    }
+};
+class Cat:Animal {
+
+    @override
+    void sound{
+        cout<<"making noice"<<endl;
+    }
+
+
+};
+
+int main(){
+
+    Cat* a = new Cat();
+    // cout<<a.sound<<endl;
+    // Animal* b = new Cat();
+    
+    
+
+
+}
