@@ -2,23 +2,23 @@
 using namespace std;
 void solve()
 {
-    int n;
-    cin >> n;
-    string a,b;
-    cin>>a>>b;
-    int one =0;
-    for( int i =0; i< n;i++){
-        if(a[i]!=b[i]){
-            cout<<"YES\n";
-            return;
-        }
-        if(a[i]=='1')one++;
+    long long n,x , ans =0;
+    cin>>n>>x;
+    vector<long long> nums(n),mod(n);
+    for( int i =0; i< n;i++ )
+    {
+        long long val;
+        cin>>val;
+        nums.push_back(val);
     }
-    if(one%2 ==1){
-        cout<<"YES\n";   
+    sort( nums.begin(), nums.end());
+    reverse(nums.begin(), nums.end());
+    for( int i =0; i<n ; i++){
+        long long val = nums[i] + ( i*x);
+        mod.push_back(val);
     }
-    else cout<<"NO\n";
-    return;
+    for( auto x : mod)ans=max(ans, x);
+    cout<<ans<<endl;
 }
 
 int main()
@@ -35,11 +35,3 @@ int main()
     }
     return 0;
 }
-
-/*
- problem link :https://codeforces.com/problemset/problem/1985/C
-
- Status : unsolved
-
-
-*/
