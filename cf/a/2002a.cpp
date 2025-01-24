@@ -4,7 +4,7 @@ void solve()
 {
     int n,m,k;
     cin>>n>>m>>k;
-    cout<<min(n,k)* min(m,k)<<endl;
+    cout<<min(n,k) * min(m,k)<<endl;
 
     return;
 }
@@ -27,7 +27,8 @@ int main()
 /*
  problem link :https://codeforces.com/problemset/problem/2002/A
 
- Status : solved
+ Status : unsolved
 
 
 */
+

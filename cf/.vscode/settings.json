@@ -1,7 +1,9 @@
 {
     "files.associations": {
         "*.cpp": "cpp",
+        "*.md": "code-text-binary",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "cmath": "cpp"
     }
 }
