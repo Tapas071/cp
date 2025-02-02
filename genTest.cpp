@@ -435,12 +435,6 @@ class PoluMorphExamp{
         return 0;
     }
 
-    int complexNum + ()( int a , int b){
-
-
-
-    }
-
     // parent 
 
     int main(){
@@ -465,10 +459,6 @@ class Animal {
 };
 class Cat:Animal {
 
-    @override
-    void sound{
-        cout<<"making noice"<<endl;
-    }
 
 
 };

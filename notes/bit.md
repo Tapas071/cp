@@ -22,7 +22,7 @@
 ### check whather a number is a power of two
 
 ```
-if( __builtin_popcount(num) )
+if( __builtin_popcount(num) ==1 )
     cout<<"yes";
 else
     cout<<"no";
