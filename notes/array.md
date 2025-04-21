@@ -147,4 +147,5 @@ for(const auto& element : array) {
 3. Using C-style strings when std::string would be better
 4. Forgetting to include necessary headers
 5. Not checking for empty strings/arrays before operations
+6. Understand the question first then try to solve that. 
 
