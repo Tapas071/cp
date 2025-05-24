@@ -2,12 +2,10 @@
 using namespace std;
 void solve()
 {
-   long long n,k;
-   cin>>n>>k;
-   vector<int> nums(n),b;
-   for( int i =0; i< n; i++){
-    cin>>nums[i];
-   }
+   long long n,m,a,b;
+   cin>>n>>m>>a>>b;
+   
+ 
    
 }
 

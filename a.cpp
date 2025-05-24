@@ -2,24 +2,40 @@
 using namespace std;
 void solve()
 {
-    int n;
+    int n, zeroCt=0;
     cin >> n;
-    vector<int> a(n), b(n);
-    unordered_set<int> sa,sb;
-    for( int i =0; i< n; i++){
-
-        cin>>a[i];
-        sa.insert(a[i]);
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
+        if( nums[i]==0)zeroCt++;
+    }
+    if( zeroCt ==0)
+    {
+        cout << "YES\n";
+        return;
     }
 
-    for( int i =0; i< n; i++){
-        cin>>b[i];
-        sb.insert(b[i]);
+    if (nums[0] == 0 and nums[1]==0)
+    {
+        cout << "YES\n";
+        return;
     }
-    if(sb.size() + sa.size() >3)cout<<"YES\n";
-    else cout<<"NO\n";
+    if( n==2 and nums[0]==1 and nums[1]==1)
+    {
+        cout << "YES\n";
+        return;
+    }
 
-
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (nums[i] == 0 and nums[i + 1] == 0)
+        {
+            cout << "YES\n";
+            return;
+        }
+    }
+    cout << "NO\n";
     return;
 }
 
@@ -37,11 +53,3 @@ int main()
     }
     return 0;
 }
-
-/*
- problem link :https://codeforces.com/problemset/problem/2002/A
-
- Status : unsolved
-
-
-*/
