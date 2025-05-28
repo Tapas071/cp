@@ -1,50 +1,59 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-class MinHeap
-{
-private:
-    // Custom comparator for min-heap with pairs of integers
-    struct customComparator
-    {
-        bool operator()(const pair<int, int> &a, const pair<int, int> &b)
-        {
-            return a.first > b.first; // Min-heap based on the first element of the pair
-        }
-    };
-
-    priority_queue<pair<int, int>, vector<pair<int, int>>, customComparator> pq;
-
-public:
-    // Function to add elements to the heap
-    void addElements(const vector<pair<int, int>> &arr)
-    {
-        for (auto x : arr)
-            pq.push(x);
+struct TreeNode{
+    int val ;
+    TreeNode * left;
+    TreeNode * right;
+    TreeNode(int x){
+        val = x;
+        this->left = nullptr;
+        this ->right  = nullptr;
     }
 
-    // Function to display and remove all elements from the heap
-    void displayAndRemoveAll()
-    {
-        while (!pq.empty())
-        {
-            pair<int, int> top = pq.top();
-            cout << "(" << top.first << ", " << top.second << ") ";
-            pq.pop();
-        }
-    }
 };
 
-int main()
-{
-    MinHeap heap;
-    vector<pair<int, int>> arr = {{10, 1}, {12, 2}, {8, 3}, {14, 4}, {5, 5}, {8, 6}};
-    heap.addElements(arr);
-    heap.displayAndRemoveAll();
-    return 0;
+void inOrderTraversal(TreeNode* root){
+   
+    if(root->left){
+        inOrderTraversal(root->left);
+    }
+    cout << root->val << " ";
+    if(root->right){
+        inOrderTraversal(root->right);
+    }
 }
 
-// to run the code : g++ fileName.cpp
-// ./a.out
+void preOrderTraversal(TreeNode *root)
+{
+    cout << root->val << " ";
+    if (root->left)
+        preOrderTraversal(root->left);
+    
+    if (root->right)
+        preOrderTraversal(root->right);
+}
 
-// output : (5, 5) (8, 3) (8, 6) (10, 1) (12, 2) (14, 4)
+void postOrderTraversal(TreeNode *root)
+{
+    if (root->left)
+        postOrderTraversal(root->left);
+
+    if (root->right)
+        postOrderTraversal(root->right);
+    cout << root->val << " ";
+}
+
+int main(){
+
+    TreeNode *t = new TreeNode(10); // heap memory allocation
+
+    TreeNode* left_child = new TreeNode(5);
+    TreeNode* right_child = new TreeNode(5);
+    t->left = left_child;
+    t->right = right_child;
+    inOrderTraversal(t);
+
+    // Tree t1 ; // stack memory allocation
+    return 0;
+}
