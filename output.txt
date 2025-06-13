@@ -1,3 +1,5 @@
-Tom
-Tom
-Jerry
+YES
+2 2 1 2 
+NO
+YES
+2 1 1 
