@@ -1,4 +1,9 @@
-# Binary Tree
+ # Binary Tree
+
+ Types of Trees
+ 1. Completele binary tree -> where each node has either 2 child or zero child
+ 2. Perfect binary Tree --> all the nodes of last row should have 2 child nodes.
+ 3.
 
 ```cpp
 // Define the structure for a tree node
