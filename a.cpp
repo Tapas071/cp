@@ -3,21 +3,17 @@ using namespace std;
 
 void solve()
 {
-    int n , k, awake =0;
-    string s;
-    cin>>n>>k;
-    cin>>s;
-    int ans =0;
-    for( int i =0; i<s.size(); i++){
-        if(s[i]=='1'){
-            awake=k;
-        }
-        else {
-            if( awake ==0)ans++;
-            else awake--;
-        }
-    }
-    cout<<ans<<endl;
+   int n; 
+   cin>>n;
+   unordered_set<int>s;
+   vector<int> nums(n);
+   for( int i =0; i< n; i++){
+    cin>>nums[i];
+    s.insert(nums[i]);
+   }
+   sort( nums.begin(), nums.end());
+   int sz = s.size();
+   cout<<*lower_bound(nums.begin(), nums.end(), sz)<<endl;
     return;
 }
 
