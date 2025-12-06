@@ -10,22 +10,29 @@ void solve()
     for (int i = 0; i < n; i++)
     {
         cin >> nums[i];
-       
     }
 
-    if(nums[0]%2) parity =1;
-    else parity =0;
-    for( int i =1; i< n; i++){
-       if( nums[i]%2){
-            if(parity==1){
+    if (nums[0] % 2)
+        parity = 1;
+    else
+        parity = 0;
+    for (int i = 1; i < n; i++)
+    {
+        if (nums[i] % 2)
+        {
+            if (parity == 1)
+            {
                 ans++;
             }
-            parity=1;
-       }else{
-        if(parity ==0)ans++;
-         parity =0;
-       }
-    //    cout<<ans<<" ind"<<i<<endl;
+            parity = 1;
+        }
+        else
+        {
+            if (parity == 0)
+                ans++;
+            parity = 0;
+        }
+        //    cout<<ans<<" ind"<<i<<endl;
     }
     cout << ans << "\n";
 
