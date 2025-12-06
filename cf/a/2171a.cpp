@@ -3,21 +3,17 @@ using namespace std;
 
 void solve()
 {
-    int n , k, awake =0;
-    string s;
-    cin>>n>>k;
-    cin>>s;
-    int ans =0;
-    for( int i =0; i<s.size(); i++){
-        if(s[i]=='1'){
-            awake=k;
-        }
-        else {
-            if( awake ==0)ans++;
-            else awake--;
-        }
+    int n;
+    cin >> n;
+    if (n % 2 == 1)
+    {
+        cout << 0 << endl;
+        return;
     }
-    cout<<ans<<endl;
+    else
+    {
+        cout << (n / 4) + 1 << endl;
+    }
     return;
 }
 

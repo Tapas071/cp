@@ -1,5 +1,6 @@
-YES
-2 2 1 2 
-NO
-YES
-2 1 1 
+AJISAI
+MAI
+TIE
+TIE
+TIE
+TIE
