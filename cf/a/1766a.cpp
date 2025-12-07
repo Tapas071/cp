@@ -3,18 +3,18 @@ using namespace std;
 
 void solve()
 {
-   int n,ans =0; 
-   cin>>n;
+    int n, ans = 0;
+    cin >> n;
     // exp -- relation
-//    1-- 9 
-//    2 - 18
-//    3 - 27
-//    4 - 36
-//    5 - 45
-   int exp = log10(n);
-   ans += (exp * 9) ;
-   ans += n/(pow(10,exp));
-   cout<<ans<<endl;
+    //    1-- 9
+    //    2 - 18
+    //    3 - 27
+    //    4 - 36
+    //    5 - 45
+    int exp = log10(n);
+    ans += (exp * 9);
+    ans += n / (pow(10, exp));
+    cout << ans << endl;
     return;
 }
 
