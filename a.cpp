@@ -3,18 +3,19 @@ using namespace std;
 
 void solve()
 {
-   int n,ans =0; 
-   cin>>n;
-    // exp -- relation
-//    1-- 9 
-//    2 - 18
-//    3 - 27
-//    4 - 36
-//    5 - 45
-   int exp = log10(n);
-   ans += (exp * 9) ;
-   ans += n/(pow(10,exp));
-   cout<<ans<<endl;
+    int a , b, c;
+    cin>>a>>b>>c;
+    int first =a, second =b;
+    if( c%2) first+= (c/2)+1;
+    else first+= (c/2);
+    second += (c/2);
+    if(first==second)
+        cout << "Second\n";
+    else if(first>second)
+        cout << "First\n";
+    else
+        cout << "Second\n";
+
     return;
 }
 
