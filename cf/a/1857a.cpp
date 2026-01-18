@@ -4,17 +4,21 @@ using namespace std;
 
 void solve()
 {
-int x, k;
-cin>>x>>k;
-if( x%k==0){
-    cout<<2<<endl;
-    cout<<x-1<<" "<<1<<endl;
-    
-}
-else {
-    cout<<1<<endl;
-    cout<<x<<endl;}
-
+    int odd = 0, n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        int k;
+        cin >> k;
+        if (k % 2)
+            odd++;
+    }
+    if (odd % 2)
+    {
+        cout << "NO\n";
+    }
+    else
+        cout << "YES\n";
 
     return;
 }

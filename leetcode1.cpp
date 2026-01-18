@@ -78,7 +78,7 @@ public:
     }
 };
 
-class Solution
+class Solution3
 {
 public:
     long long totalScore(int hp, vector<int> &damage, vector<int> &requirement)
@@ -98,14 +98,83 @@ public:
         return ans;
     }
 };
+
+class Solution4 {
+public:
+    string reverseWords(string s) {
+        vector<string> strs;
+        int n = s.size();
+        string str ="";
+        for( int i =0; i< n; i++){
+            
+            if( s[i]==' '){
+                strs.push_back(str);
+                str ="";
+            }
+            else str+=s[i];
+        }
+        strs.push_back(str);
+        // for( auto x : strs)cout<<x<<" ";
+        str="";
+        int firstVowelCt =0;
+        string ans ="";
+        for( int i=0; i< strs.size(); i++){
+            str = strs[i];
+            if( i ==0){
+                for( auto x : str){
+                    // cout<<x<<" ";
+                    if( x== 'a' || x =='e'|| x== 'i' || x =='o'|| x== 'u' ){
+                        firstVowelCt++;
+                        cout<<x<<" count"<<firstVowelCt<<endl;
+                    }
+                }
+                cout<<firstVowelCt<<endl;
+                ans += str;
+                ans += " ";
+            }
+            else{
+                int vowelCt =0;
+                cout<<firstVowelCt<<endl;
+                for( auto x : str){
+                    if( x== 'a' || x =='e'|| x== 'i' || x =='o'|| x== 'u' ){
+                        vowelCt++;
+                    }
+                }
+                // cout<<vowelCt<<" -- "<< firstVowelCt<<str<<endl;
+                if(vowelCt == firstVowelCt){
+                     reverse( str.begin(), str.end());
+                     ans+= str;
+                     ans += " ";
+                }
+                else {
+                    ans+= str;
+                     ans += " ";
+                }
+            }
+        }
+        ans.pop_back();
+        return ans;
+        
+    }
+};
+
+class Solution {
+public:
+    double separateSquares(vector<vector<int>>& squares) {
+        
+    }
+};
+
 int main()
 {
-    vector<string> strs = {"oo", "vv", "uu", "gg", "pp", "ff", "ss", "yy", "vv", "cc", "rr", "ig", "jj", "uu", "ig", "gb", "zz", "xx", "ff", "bb", "ii", "dd", "ii", "ee", "mm", "qq", "ig", "ww", "ss", "tt", "vv", "oo", "ww", "ss", "bi", "ff", "gg", "bi", "jj", "ee", "gb", "qq", "bg", "nn", "vv", "oo", "bb", "pp", "ww", "qq", "mm", "ee", "tt", "hh", "ss", "tt", "ee", "gi", "ig", "uu", "ff", "zz", "ii", "ff", "ss", "gi", "yy", "gb", "mm", "pp", "uu", "kk", "jj", "ee"};
+    // vector<string> strs = {"oo", "vv", "uu", "gg", "pp", "ff", "ss", "yy", "vv", "cc", "rr", "ig", "jj", "uu", "ig", "gb", "zz", "xx", "ff", "bb", "ii", "dd", "ii", "ee", "mm", "qq", "ig", "ww", "ss", "tt", "vv", "oo", "ww", "ss", "bi", "ff", "gg", "bi", "jj", "ee", "gb", "qq", "bg", "nn", "vv", "oo", "bb", "pp", "ww", "qq", "mm", "ee", "tt", "hh", "ss", "tt", "ee", "gi", "ig", "uu", "ff", "zz", "ii", "ff", "ss", "gi", "yy", "gb", "mm", "pp", "uu", "kk", "jj", "ee"};
 
-    // Solution sol =  Solution();
+    Solution sol =  Solution();
+    string str = "cat and mice";
+     cout << sol.reverseWords(str)<<endl;
 
-    // int ans = sol.longestPalindrome(strs);
-    // cout<<ans<<endl;
+                                        // int ans = sol.longestPalindrome(strs);
+                                        // cout<<ans<<endl;
 
-    return 0;
+                                        return 0;
 }
