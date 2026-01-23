@@ -5,25 +5,26 @@ using namespace std;
 
 void solve()
 {
-    int a,b,c,d;
-    cin>>a>>b>>c>>d;
-    int ans =0;
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    int ans = 0;
     // initial coordinate (a,b) and the target coordinate ( c,d);
-    if(d<b){
-        cout<<-1<<endl;
+    if (d < b)
+    {
+        cout << -1 << endl;
         return;
     }
-    ans += (d-b);
+    ans += (d - b);
     a += ans;
-    if(c>a){
-        cout<<-1<<endl;
+    if (c > a)
+    {
+        cout << -1 << endl;
         return;
     }
-    ans += (a-c);
-    cout<<ans<<endl;
+    ans += (a - c);
+    cout << ans << endl;
     return;
 }
-
 
 int main()
 {
