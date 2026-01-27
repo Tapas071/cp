@@ -5,22 +5,23 @@ using namespace std;
 
 void solve()
 {
-long long a , b , n, totalTime =0;
-cin>>a>>b>>n;
-vector<int> nums( n);
+    long long a, b, n, totalTime = 0;
+    cin >> a >> b >> n;
+    vector<int> nums(n);
 
-for( int i =0; i<n;i++){
-    cin>>nums[i];
-    if(nums[i] >=a){
-        totalTime += a-1;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
+        if (nums[i] >= a)
+        {
+            totalTime += a - 1;
+        }
+        else
+            totalTime += nums[i];
     }
-    else totalTime += nums[i];
+    totalTime += b;
+    cout << totalTime << endl;
 }
-totalTime += b;
-cout<<totalTime<<endl;
-
-}
-
 
 int main()
 {
