@@ -5,20 +5,25 @@ using namespace std;
 
 void solve()
 {
-long long a , b , n, totalTime =0;
-cin>>a>>b>>n;
-vector<int> nums( n);
-
-for( int i =0; i<n;i++){
+ int n ;
+ cin>>n;
+ vector<int> nums(n);
+ for( int i =0;i <n ; i++){
     cin>>nums[i];
-    if(nums[i] >=a){
-        totalTime += a-1;
-    }
-    else totalTime += nums[i];
-}
-totalTime += b;
-cout<<totalTime<<endl;
-
+ }
+ if( nums.size()%2==0){
+    cout<<2<<endl;
+    cout<<1<<" "<<n<<endl;
+    cout<<1<<" "<<n<<endl;
+ }
+ else {
+     cout << 4 << endl;
+     cout << 1 << " " << n-1 << endl;
+     cout << 1 << " " << n-1 << endl;
+     cout << n-1 << " " << n  << endl;
+     cout << n- 1 << " " << n  << endl;
+ }
+return;
 }
 
 
@@ -38,6 +43,13 @@ int main()
 }
 
 /*
+ nums = [1 ,3, 4]
+ NUMS = [5,5,5]
 
+ 001
+ 011
+ 100
+ 110
+    
 
 */
