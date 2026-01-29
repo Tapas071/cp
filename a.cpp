@@ -5,24 +5,26 @@ using namespace std;
 
 void solve()
 {
- int n ;
+ int n,k ;
  cin>>n;
+ cin>>k;
  vector<int> nums(n);
  for( int i =0;i <n ; i++){
     cin>>nums[i];
  }
- if( nums.size()%2==0){
-    cout<<2<<endl;
-    cout<<1<<" "<<n<<endl;
-    cout<<1<<" "<<n<<endl;
+ sort(nums.begin(),nums.end());
+ int ct=1, maxCt=1;
+ for( int i =1; i<n; i++){
+    if(nums[i]-nums[i-1]<=k){
+        ct++;
+        maxCt= max( maxCt, ct);
+    }
+    else {
+        ct=1;
+    }
  }
- else {
-     cout << 4 << endl;
-     cout << 1 << " " << n-1 << endl;
-     cout << 1 << " " << n-1 << endl;
-     cout << n-1 << " " << n  << endl;
-     cout << n- 1 << " " << n  << endl;
- }
+ cout<<n-maxCt<<endl;
+ 
 return;
 }
 

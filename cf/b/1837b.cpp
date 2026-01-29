@@ -3,18 +3,21 @@ using namespace std;
 
 void solve()
 {
-    int n,ct=1,maxCt=1;
+    int n, ct = 1, maxCt = 1;
     cin >> n;
     string s;
-    cin>>s;
-    for( int i =1;i<n;i++){
-        if( s[i]==s[i-1]){
+    cin >> s;
+    for (int i = 1; i < n; i++)
+    {
+        if (s[i] == s[i - 1])
+        {
             ct++;
-            maxCt = max( maxCt, ct);
+            maxCt = max(maxCt, ct);
         }
-        else ct=1;
+        else
+            ct = 1;
     }
-    cout<<maxCt+1<<endl;
+    cout << maxCt + 1 << endl;
     return;
 }
 
