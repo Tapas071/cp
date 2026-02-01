@@ -1,20 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
+// powershell  terminal cmd to run the code:  g++ b.cpp -o a.exe ; .\a.exe
+// powershell cmd to push into git:  git status; git add .; git commit -m "adding a few cf question"; git push
 
 void solve()
 {
-    int n,ct=1,maxCt=1;
-    cin >> n;
-    string s;
-    cin>>s;
-    for( int i =1;i<n;i++){
-        if( s[i]==s[i-1]){
-            ct++;
-            maxCt = max( maxCt, ct);
-        }
-        else ct=1;
+    long long n, q, sum=0;
+    cin >> n>>q;
+    vector<int> nums(n);
+    vector<int> pre_sum;
+    pre_sum.push_back(0);
+    
+    for( int i =0; i< n; i++){
+        cin>>nums[i];
+        sum+=(nums[i]%2);
+        // sum %=2;
+        pre_sum.push_back(sum);
     }
-    cout<<maxCt+1<<endl;
+    // for( auto x : pre_sum)cout<<x<<" ";
+    // cout<<endl;
+    for( int i=0; i<q;i++){
+        int l, r,k;
+        cin>>l>>r>>k;
+        if((r-l+1)%2==0){
+            k=0;
+        }else{
+            if (k % 2 == 0)
+            {
+                k = 0;
+            }
+            else k=1;
+        }
+        int totalVal = pre_sum[l];
+        // cout<<totalVal<<endl;
+        totalVal += pre_sum[n]-pre_sum[r];
+        // cout << totalVal << endl;
+        totalVal += k;
+        if(totalVal %2==1){
+            cout<<"YES\n";
+        }
+        else cout<<"NO\n";
+    }
     return;
 }
 
@@ -32,38 +58,3 @@ int main()
     }
     return 0;
 }
-/*
-A. Everybody Likes Good Arrays!
-time limit per test1 second
-memory limit per test256 megabytes
-An array a
- is good if for all pairs of adjacent elements, ai
- and ai+1
- (1≤i<n
-) are of different parity. Note that an array of size 1
- is trivially good.
-
-You are given an array of size n
-.
-
-In one operation you can select any pair of adjacent elements in which both elements are of the same parity, delete them, and insert their product in the same position.
-
-Find the minimum number of operations to form a good array.
-
-Input
-Each test contains multiple test cases. The first line contains the number of test cases t
- (1≤t≤500
-). The description of the test cases follows.
-
-The first line of each test case contains an integer n
- (1≤n≤100
-).
-
-The second line of each test case contains n
- integers a1,a2,…,an
- (1≤ai≤109
-).
-
-Output
-For each test case print an integer, the minimum number of operations required to form a good array.
-*/

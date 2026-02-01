@@ -1,8 +1,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-// powershell  terminal cmd to run the code:  g++ a.cpp -o a.exe ; .\a.exe
-// git status; git add ; git commit -m "adding a few cf question" ; git push
 
 void solve()
 {
