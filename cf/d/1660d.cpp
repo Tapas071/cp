@@ -3,7 +3,7 @@
 using namespace std;
 // powershell  terminal cmd to run the code:  g++ a.cpp -o a.exe ; .\a.exe
 
-// powershell cmd to push into git:  git status; git add .; git commit -m "adding 1660d cf question from tle eliminator"; git push
+// powershell cmd to push into git:  git status; git add .; git commit -m "adding 1679a cf question from tle eliminator"; git push
 
 // cmd prompt cmd to create a file and paste content to that directory:  copy a.cpp .\cf\d\1660d.cpp
 
