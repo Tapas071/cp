@@ -1,11 +1,4 @@
-YES
-YES
-YES
-YES
-NO
-YES
-NO
-YES
-YES
-NO
-YES
+b
+aabbbabaa
+bbbb
+abbaaa
