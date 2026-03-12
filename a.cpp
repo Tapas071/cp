@@ -6,67 +6,42 @@ using namespace std;
 // powershell cmd to push into git:  git status; git add .; git commit -m "adding 1606a cf question from tle eliminator"; git push
 
 // cmd prompt cmd to create a file and paste content to that directory:  copy a.cpp .\cf\a\1606a.cpp
+long long powerOfTwo(long long x){
+    if(x==0)return 1;
+    if(x==1)return 2;
+    if( x%2==1){
+        return x * powerOfTwo(x-1);
+    }
+    return powerOfTwo(x/2) * powerOfTwo(x/2);
+}
+vector<int> segment;
+void build(int arr[], int l, int r, int idx){
+    if(l==r){
+        segment[idx]=arr[idx];
+        return;
+    }
+    int mid = l + (r-l)/2;
+    build(arr,l,mid,2*idx+1); // left
+    build(arr, mid+1, r, 2*idx +2); // right
+    segment[idx] = segment[2*idx +1] + segment[2*idx +2]; // merge
+}
+
 
 void solve()
 {
- string s;
- cin>>s;
- 
- char x=s[0];
- int ct=0,ct2=0 , n = s.size();
- if (s[0] == s[n - 1])
- {
-     cout << s << endl;
-     return;
+ long long n, oneCt =0, zeroCt =0 ;
+ cin>>n;
+ for( int i =0; i< n; i++){
+    int k;
+    cin>>k;
+    if( k==1)oneCt++;
+    else if(k==0)zeroCt++;
  }
- for( int i =0; i< s.size(); i++){
-    if( x ==s[i]){
-        ct++;
-    }
-    else{
-        break;
-    }
- }
- x=s[n-1];
- for (int i = 0; i < s.size(); i++)
- {
-     if (x == s[n-1-i])
-     {
-         ct2++;
-     }
-     else
-     {
-         break;
-     }
- }
- char lastCh = s[n-1], firstCh = s[0];
-//  s[n-1]
- if( ct>=ct2){
-    // for( int i =0; i< n; i++){
-    //     if(lastCh==s[n-1-i]){
-    //         s[n-i-1]=firstCh;
-    //     }
-    //     else break;
-    // }
-    s[n-1] = firstCh;
- }
- else 
- {
-    //  for (int i = 0; i < n; i++)
-    //  {
-    //      if (firstCh == s[ i])
-    //      {
-    //          s[i] = lastCh;
-    //      }
-    //      else
-    //          break;     
-    //  }
-    s[0] = lastCh;
- }
-//  cout<<ct<<" "<<ct2<<endl;
-//  cout<<lastCh<<firstCh<<endl;
- cout<<s<<endl;
-
+ int arr[] ={1,2,3,4,6};
+ int n = 5;
+ build(arr,0,5,0);
+ segment = vector<int>(4*n);
+ cout << (oneCt) * (powerOfTwo( zeroCt)) << endl;
 
  return;
 }
