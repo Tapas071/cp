@@ -1,4 +1,4 @@
-#Graph
+# Graph
 
 ## Topics
 1. Representing Graphs
@@ -71,7 +71,7 @@ void dfs(vector<vector<int>>& graph, vector<bool>& visited, int u){
 }
 ```
 
-### Breadth First Search (BFS)
+### Breadth First Search (BFS) / Level order traversal
 ```cpp
 void bfs(vector<vector<int>>& graph, vector<bool>& visited, int u){
     queue<int> q;
@@ -98,22 +98,22 @@ void bfs(vector<vector<int>>& graph, vector<bool>& visited, int u){
 ### Dijkstra's Algorithm
 ```cpp
 // here dist is the vector which stores the distance of each node from the source node and the initial value of the dist vector is INT_MAX
-// here u is the source node
-void dijkstra(vector<vector<pair<int, int>>>& graph, vector<int>& dist, int u){
+
+void dijkstra(vector<vector<pair<int, int>>>& graph, vector<int>& dist, int source){
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; 
-    pq.push({0, u});
-    dist[u] = 0;
+    pq.push({0, source});
+    dist[source] = 0;
     while(!pq.empty()){
-        int u = pq.top().second;
-        int d = pq.top().first;
+        int current_node = pq.top().second; 
+        int current_dist = pq.top().first;  
         pq.pop();
-        if(d > dist[u]) continue;
-        for(auto p : graph[u]){
-            int v = p.first;
-            int w = p.second;
-            if(dist[u] + w < dist[v]){
-                dist[v] = dist[u] + w;
-                pq.push({dist[v], v});
+        if(current_dist > dist[current_node]) continue;
+        for(auto neighbour : graph[current_node]){
+            int neighbour_node = neighbour.first;
+            int neighbour_dist = neighbour.second; // distance from current node to neighbour node
+            if(dist[current_node] + neighbour_dist < dist[neighbour_node]){
+                dist[neighbour_node] = dist[current_node] + neighbour_dist;
+                pq.push({dist[neighbour_node], neighbour_node});
             }
         }
     }

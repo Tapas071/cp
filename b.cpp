@@ -5,17 +5,29 @@ using namespace std;
 
 void solve()
 {
-    int n , x;
-    cin>>x>>n;
-    cout<<x<<" ";
-    for( int i =1; i<= n; i++){
-        if (x % 2 == 1)
-        {
-            x += i;
-        }
-        else x-=i;
-        cout<<x<<" ";
+    int n ;
+    cin>>n;
+    vector<int> nums;
+    unordered_map<int,int> m;
+    for( int i=0; i< n; i++){
+        int k;
+        cin>>k;
+        nums.push_back(k);
+        m[k]++;
     }
+    for( int i =0; i<n; i++){
+        // cout<<m[nums[i]]<<" ";
+        if( m[nums[i]]>1){
+            cout<<-1<<endl;
+            return;
+        }
+    }
+    // cout<<endl;
+    sort(nums.begin(), nums.end(), greater<int>());
+    for( int i =0; i< n; i++){
+        cout<<nums[i]<<" ";
+    }
+    cout<<endl;
     
     return;
 }
@@ -27,7 +39,7 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();
